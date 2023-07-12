@@ -107,7 +107,11 @@ const todoSlice = createSlice({
   initialState,
   reducers: {
     addTodo: (state, action) => {
-      return [...state, action.payload];
+      // 리액트에서 렌더링을 발생시키기 위해서 불변성을 유지해야하므로, 
+      // 우리는 스프레드 문법을 통해 새로운 배열을 반환하는 형식을 많이 써왔다.
+      state.push(action.payload);
+
+      //return [...state, action.payload];
     },
     removeTodo: (state, action) => {
       return state.filter((item) => item.id !== action.payload);
